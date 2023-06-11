@@ -8,18 +8,48 @@
 import SwiftUI
 import SwiftData
 
+enum FavOption: String, CaseIterable {
+    case names = "Names"
+    case templates = "Templates"
+}
+
 struct FavoritesView: View {
     
     @Query var savedPeople: [Person]
+    @Query var savedTemplates: [Template]
     @Environment(\.modelContext) private var modelContext
+    
+    @State var favSelection: FavOption = .names
     
     var body: some View {
         NavigationView {
-            List{
-                ForEach(savedPeople, id:\.self) { person in
-                    Text("\(person.name)")
+            VStack {
+                HStack {
+                    Picker("", selection: $favSelection) {
+                        ForEach(FavOption.allCases, id: \.self) { option in
+                            Text(option.rawValue)
+                        }
+                    }.pickerStyle(SegmentedPickerStyle())
+                        .padding(.horizontal)
                 }
-                .onDelete(perform: deleteItems)
+                
+                
+                if favSelection == .names {
+                    List {
+                        ForEach(savedPeople, id:\.self) { person in
+                            Text("\(person.name)")
+                        }
+                        .onDelete(perform: deleteItems)
+                    }
+                }
+                else {
+                    List {
+                        ForEach(savedTemplates, id:\.self) { template in
+                            Text("\(template.name)")
+                        }
+                        .onDelete(perform: deleteItems)
+                    }
+                }
             }
             .navigationTitle("Favorites")
             .navigationBarItems(trailing: EditButton())
@@ -30,15 +60,28 @@ struct FavoritesView: View {
     
     private func addPerson() {
         withAnimation {
-            let newPerson = Person(name: "\(Date())", isSaved: true)
-            modelContext.insert(newPerson)
+            if favSelection == .names {
+                let newPerson = Person(name: "\(Date())", isSaved: true)
+                modelContext.insert(newPerson)
+            }
+            else {
+                let newTemplate = Template(name: "Testing", people: savedPeople)
+                modelContext.insert(newTemplate)
+            }
         }
     }
 
-    private func deleteItems(offsets: IndexSet) {
+   private func deleteItems(offsets: IndexSet) {
         withAnimation {
-            for index in offsets {
-                modelContext.delete(savedPeople[index])
+            if favSelection == .names {
+                for index in offsets {
+                    modelContext.delete(savedPeople[index])
+                }
+            }
+            else {
+                for index in offsets {
+                    modelContext.delete(savedTemplates[index])
+                }
             }
         }
     }
@@ -46,6 +89,6 @@ struct FavoritesView: View {
 
 #Preview {
     FavoritesView()
-        .modelContainer(for: Person.self, inMemory: true)
+        .modelContainer(for: [Person.self, Template.self], inMemory: true)
 
 }

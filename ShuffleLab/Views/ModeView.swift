@@ -16,7 +16,7 @@ enum ShuffleMode: String, CaseIterable {
 
 enum InsertOption: String, CaseIterable {
     case new = "New"
-    case saved = "Saved"
+    case saved = "Templates"
 }
 
 struct ModeView: View {

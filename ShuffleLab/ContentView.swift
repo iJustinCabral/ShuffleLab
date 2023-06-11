@@ -16,8 +16,8 @@ struct ContentView: View {
                 ModeView()
                     .tabItem { Label("Shuffle Lab", systemImage: "filemenu.and.selection") }
             
-                SavedNamesView()
-                    .tabItem { Label("Saved Names", systemImage: "list.star") }
+                FavoritesView()
+                    .tabItem { Label("Favorites", systemImage: "star") }
             
                 SettingsView()
                     .tabItem { Label("Settings", systemImage: "gearshape")}

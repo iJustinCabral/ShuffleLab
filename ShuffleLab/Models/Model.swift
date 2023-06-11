@@ -9,6 +9,8 @@ import Foundation
 import SwiftUI
 import SwiftData
 
+
+
 @Model
 final class Person {
     var name: String
@@ -17,5 +19,16 @@ final class Person {
     init(name: String, isSaved: Bool) {
         self.name = name
         self.isSaved = isSaved
+    }
+}
+
+@Model
+final class Template {
+    var name: String
+    var people: [Person]
+    
+    init(name: String, people: [Person]) {
+        self.name = name
+        self.people = people
     }
 }
