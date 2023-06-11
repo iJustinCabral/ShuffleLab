@@ -9,20 +9,20 @@ import SwiftUI
 import SwiftData
 
 enum FavOption: String, CaseIterable {
-    case names = "Names"
-    case templates = "Templates"
+    case names = "People"
+    case templates = "Groups"
 }
 
 struct FavoritesView: View {
     
-    @Query var savedPeople: [Person]
-    @Query var savedTemplates: [Template]
+    @Query var people: [Person]
+    @Query var group: [Group]
     @Environment(\.modelContext) private var modelContext
     
     @State var favSelection: FavOption = .names
     
     var body: some View {
-        NavigationView {
+        NavigationStack {
             VStack {
                 HStack {
                     Picker("", selection: $favSelection) {
@@ -36,7 +36,7 @@ struct FavoritesView: View {
                 
                 if favSelection == .names {
                     List {
-                        ForEach(savedPeople, id:\.self) { person in
+                        ForEach(people, id:\.self) { person in
                             Text("\(person.name)")
                         }
                         .onDelete(perform: deleteItems)
@@ -44,7 +44,7 @@ struct FavoritesView: View {
                 }
                 else {
                     List {
-                        ForEach(savedTemplates, id:\.self) { template in
+                        ForEach(group, id:\.self) { template in
                             Text("\(template.name)")
                         }
                         .onDelete(perform: deleteItems)
@@ -65,7 +65,7 @@ struct FavoritesView: View {
                 modelContext.insert(newPerson)
             }
             else {
-                let newTemplate = Template(name: "Testing", people: savedPeople)
+                let newTemplate = Group(name: "Testing", people: people)
                 modelContext.insert(newTemplate)
             }
         }
@@ -75,12 +75,12 @@ struct FavoritesView: View {
         withAnimation {
             if favSelection == .names {
                 for index in offsets {
-                    modelContext.delete(savedPeople[index])
+                    modelContext.delete(people[index])
                 }
             }
             else {
                 for index in offsets {
-                    modelContext.delete(savedTemplates[index])
+                    modelContext.delete(group[index])
                 }
             }
         }
@@ -89,6 +89,6 @@ struct FavoritesView: View {
 
 #Preview {
     FavoritesView()
-        .modelContainer(for: [Person.self, Template.self], inMemory: true)
+        .modelContainer(for: [Person.self, Group.self], inMemory: true)
 
 }

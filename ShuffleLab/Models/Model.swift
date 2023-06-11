@@ -23,7 +23,7 @@ final class Person {
 }
 
 @Model
-final class Template {
+final class Group {
     var name: String
     var people: [Person]
     

@@ -9,7 +9,7 @@ import SwiftUI
 
 struct SettingsView: View {
     var body: some View {
-         NavigationView {
+         NavigationStack {
              Form {
                  Section {
                      LabeledContent("Shuffle Lab Version", value: "0.1.0")

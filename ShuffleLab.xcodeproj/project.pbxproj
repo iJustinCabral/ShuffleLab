@@ -8,11 +8,10 @@
 
 /* Begin PBXBuildFile section */
 		E35BF0A92A3535A300322EDD /* ShuffleLabApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = E35BF0A82A3535A300322EDD /* ShuffleLabApp.swift */; };
-		E35BF0AB2A3535A300322EDD /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E35BF0AA2A3535A300322EDD /* ContentView.swift */; };
 		E35BF0AD2A3535A400322EDD /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E35BF0AC2A3535A400322EDD /* Assets.xcassets */; };
 		E35BF0B02A3535A400322EDD /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E35BF0AF2A3535A400322EDD /* Preview Assets.xcassets */; };
 		E35BF0B22A3535A400322EDD /* Item.swift in Sources */ = {isa = PBXBuildFile; fileRef = E35BF0B12A3535A400322EDD /* Item.swift */; };
-		E35BF0BC2A3549E500322EDD /* ModeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E35BF0BB2A3549E500322EDD /* ModeView.swift */; };
+		E35BF0BC2A3549E500322EDD /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E35BF0BB2A3549E500322EDD /* MainView.swift */; };
 		E35BF0BE2A3549F300322EDD /* FavoritesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E35BF0BD2A3549F300322EDD /* FavoritesView.swift */; };
 		E35BF0C02A3549FE00322EDD /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E35BF0BF2A3549FE00322EDD /* SettingsView.swift */; };
 		E35BF0C42A3583ED00322EDD /* Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = E35BF0C32A3583ED00322EDD /* Model.swift */; };
@@ -21,11 +20,10 @@
 /* Begin PBXFileReference section */
 		E35BF0A52A3535A300322EDD /* ShuffleLab.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ShuffleLab.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E35BF0A82A3535A300322EDD /* ShuffleLabApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShuffleLabApp.swift; sourceTree = "<group>"; };
-		E35BF0AA2A3535A300322EDD /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		E35BF0AC2A3535A400322EDD /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		E35BF0AF2A3535A400322EDD /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		E35BF0B12A3535A400322EDD /* Item.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Item.swift; sourceTree = "<group>"; };
-		E35BF0BB2A3549E500322EDD /* ModeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModeView.swift; sourceTree = "<group>"; };
+		E35BF0BB2A3549E500322EDD /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
 		E35BF0BD2A3549F300322EDD /* FavoritesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesView.swift; sourceTree = "<group>"; };
 		E35BF0BF2A3549FE00322EDD /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 		E35BF0C32A3583ED00322EDD /* Model.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Model.swift; sourceTree = "<group>"; };
@@ -62,7 +60,6 @@
 			isa = PBXGroup;
 			children = (
 				E35BF0A82A3535A300322EDD /* ShuffleLabApp.swift */,
-				E35BF0AA2A3535A300322EDD /* ContentView.swift */,
 				E35BF0BA2A35441D00322EDD /* Views */,
 				E35BF0B82A3539E000322EDD /* Components */,
 				E35BF0B92A35440F00322EDD /* Models */,
@@ -99,7 +96,7 @@
 		E35BF0BA2A35441D00322EDD /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				E35BF0BB2A3549E500322EDD /* ModeView.swift */,
+				E35BF0BB2A3549E500322EDD /* MainView.swift */,
 				E35BF0BD2A3549F300322EDD /* FavoritesView.swift */,
 				E35BF0BF2A3549FE00322EDD /* SettingsView.swift */,
 			);
@@ -177,8 +174,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				E35BF0C42A3583ED00322EDD /* Model.swift in Sources */,
-				E35BF0AB2A3535A300322EDD /* ContentView.swift in Sources */,
-				E35BF0BC2A3549E500322EDD /* ModeView.swift in Sources */,
+				E35BF0BC2A3549E500322EDD /* MainView.swift in Sources */,
 				E35BF0B22A3535A400322EDD /* Item.swift in Sources */,
 				E35BF0C02A3549FE00322EDD /* SettingsView.swift in Sources */,
 				E35BF0A92A3535A300322EDD /* ShuffleLabApp.swift in Sources */,

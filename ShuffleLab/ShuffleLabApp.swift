@@ -13,8 +13,8 @@ struct ShuffleLabApp: App {
 
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            MainView()
         }
-        .modelContainer(for: [Person.self, Template.self])
+        .modelContainer(for: [Person.self, Group.self])
     }
 }
