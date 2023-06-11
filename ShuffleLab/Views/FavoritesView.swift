@@ -8,7 +8,7 @@
 import SwiftUI
 import SwiftData
 
-struct SavedNamesView: View {
+struct FavoritesView: View {
     
     @Query var savedPeople: [Person]
     @Environment(\.modelContext) private var modelContext
@@ -21,7 +21,7 @@ struct SavedNamesView: View {
                 }
                 .onDelete(perform: deleteItems)
             }
-            .navigationTitle("Saved Names")
+            .navigationTitle("Favorites")
             .navigationBarItems(trailing: EditButton())
             .navigationBarItems(leading: Button(action: addPerson) {Image(systemName: "plus")})
             .accentColor(.purple)
@@ -45,7 +45,7 @@ struct SavedNamesView: View {
 }
 
 #Preview {
-    SavedNamesView()
+    FavoritesView()
         .modelContainer(for: Person.self, inMemory: true)
 
 }
