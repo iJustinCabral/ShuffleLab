@@ -11,31 +11,19 @@ import SwiftData
 struct ContentView: View {
     @Environment(\.modelContext) private var modelContext
     @Query private var items: [Item]
-    
+        
     var body: some View {
-        NavigationView {
-            List {
-                ForEach(items) { item in
-                    NavigationLink {
-                        Text("Item at \(item.timestamp, format: Date.FormatStyle(date: .numeric, time: .standard))")
-                    } label: {
-                        Text(item.timestamp, format: Date.FormatStyle(date: .numeric, time: .standard))
-                    }
-                }
-                .onDelete(perform: deleteItems)
-            }
-            .toolbar {
-                ToolbarItem(placement: .navigationBarTrailing) {
-                    EditButton()
-                }
-                ToolbarItem {
-                    Button(action: addItem) {
-                        Label("Add Item", systemImage: "plus")
-                    }
-                }
-            }
-            Text("Select an item")
+        TabView {
+                ModeView()
+                    .tabItem { Label("Modes", systemImage: "filemenu.and.selection") }
+            
+                SavedNamesView()
+                    .tabItem { Label("Saved Names", systemImage: "list.star") }
+            
+                SettingsView()
+                    .tabItem { Label("Settings", systemImage: "gearshape")}
         }
+        .accentColor(.purple)
     }
 
     private func addItem() {
