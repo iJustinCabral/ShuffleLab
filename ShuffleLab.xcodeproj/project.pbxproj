@@ -15,6 +15,7 @@
 		E35BF0BC2A3549E500322EDD /* ModeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E35BF0BB2A3549E500322EDD /* ModeView.swift */; };
 		E35BF0BE2A3549F300322EDD /* SavedNamesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E35BF0BD2A3549F300322EDD /* SavedNamesView.swift */; };
 		E35BF0C02A3549FE00322EDD /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E35BF0BF2A3549FE00322EDD /* SettingsView.swift */; };
+		E35BF0C42A3583ED00322EDD /* Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = E35BF0C32A3583ED00322EDD /* Model.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -27,6 +28,7 @@
 		E35BF0BB2A3549E500322EDD /* ModeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModeView.swift; sourceTree = "<group>"; };
 		E35BF0BD2A3549F300322EDD /* SavedNamesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SavedNamesView.swift; sourceTree = "<group>"; };
 		E35BF0BF2A3549FE00322EDD /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
+		E35BF0C32A3583ED00322EDD /* Model.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Model.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -89,6 +91,7 @@
 		E35BF0B92A35440F00322EDD /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				E35BF0C32A3583ED00322EDD /* Model.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -173,6 +176,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E35BF0C42A3583ED00322EDD /* Model.swift in Sources */,
 				E35BF0AB2A3535A300322EDD /* ContentView.swift in Sources */,
 				E35BF0BC2A3549E500322EDD /* ModeView.swift in Sources */,
 				E35BF0B22A3535A400322EDD /* Item.swift in Sources */,

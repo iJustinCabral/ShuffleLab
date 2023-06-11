@@ -15,6 +15,6 @@ struct ShuffleLabApp: App {
         WindowGroup {
             ContentView()
         }
-        .modelContainer(for: Item.self)
+        .modelContainer(for: Person.self)
     }
 }
