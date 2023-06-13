@@ -22,13 +22,15 @@ enum InsertOption: String, CaseIterable {
 
 struct MainView: View {
     
-    @Query var people: [Person]
+    @Query(filter: #Predicate<Person> { $0.isSaved == false }) var people: [Person]
     @Query var group: [Group]
     @Environment(\.modelContext) private var modelContext
     
     @State var modeSelection: ShuffleMode = .names
     @State var insertSelection: InsertOption = .new
     @State var nameInput = ""
+    @State var stepValue = 2
+    @State var showLabView = false
     
     var body: some View {
         NavigationStack {
@@ -38,6 +40,10 @@ struct MainView: View {
                         ForEach(ShuffleMode.allCases, id: \.self) { mode in
                             Text(mode.rawValue)
                         }
+                    }
+                    
+                    if modeSelection == .teams {
+                        Stepper("Team Count: \(stepValue)", value: $stepValue, in: 2...8)
                     }
                 } header: {
                     Text("Mode")
@@ -55,7 +61,12 @@ struct MainView: View {
                     TextField(text: $nameInput) {
                         Text("Enter a person's name")
                     }
-                    Button(action: {}) {
+                    
+                    Button(action: {
+                        let newPerson = Person(name: nameInput, isSaved: false)
+                        modelContext.insert(newPerson)
+                        nameInput = ""
+                    }) {
                         Text("Add Person")
                     }
                 } header: {
@@ -63,13 +74,17 @@ struct MainView: View {
                 }
                 
                 Section {
-                    if (people.count.words.isEmpty) {
-                        ContentUnavailableView("No people to count...", systemImage: "person.fill")
+                    if (people.isEmpty) {
+                        ContentUnavailableView("No heads to count", systemImage: "person.fill")
                     }
                     else {
-                        List(people) { person in
-                            Text("\(person.name)")
+                        List {
+                            ForEach(people, id:\.self) { person in
+                                Text("\(person.name)")
+                            }
+                            .onDelete(perform: deleteItems)
                         }
+                        
                     }
                 } header: {
                     Text("Head Count: \(people.count)")
@@ -79,19 +94,40 @@ struct MainView: View {
             .navigationTitle("Shuffle Lab")
             .navigationBarItems(trailing: NavigationLink(destination: SettingsView()){Image(systemName: "gear")})
             .overlay(
-                Button(action: {}) {
-                    Text("Enter The Lab")
-                }.padding()
-                    .foregroundColor(.white)
-                    .font(.headline)
-                    .frame(minWidth: 0, maxWidth: .infinity, alignment: .center)
-                    .background(RoundedRectangle(cornerRadius: 15, style: .continuous).fill(Color.purple))
-                ,
-                alignment: .bottom
+                ShuffleButton(),
+                alignment: .bottomTrailing
             )
-    
+            .sheet(isPresented: $showLabView) {
+                LabView()
+                    .presentationDetents([.medium])
+            }
         }
         .accentColor(.purple)
+    }
+    
+    private func addPerson() {
+        withAnimation {
+            let newPerson = Person(name: nameInput, isSaved: false)
+            modelContext.insert(newPerson)
+        }
+    }
+
+   private func deleteItems(offsets: IndexSet) {
+        withAnimation {
+            for index in offsets {
+                modelContext.delete(people[index])
+            }
+        }
+    }
+
+    @ViewBuilder
+    func ShuffleButton() -> some View {
+        Button(action: { showLabView.toggle() }) {
+        Capsule().fill(Color.purple)
+            .frame(width: 60, height: 60)
+            .shadow(radius: 4)
+            .overlay(Image(systemName: "arrow.up.left.bottomright.rectangle.fill").foregroundColor(.white).font(.title).fontWeight(.semibold))
+        }.padding(.horizontal)
     }
 }
 
@@ -99,29 +135,3 @@ struct MainView: View {
     MainView()
         .modelContainer(for: [Person.self, Group.self], inMemory: true)
 }
-
-/**
- 
- ScrollView(.vertical) {
-     HStack {
-         Text("Choose Mode:")
-             .font(.title3)
-             .fontWeight(.semibold)
-         
-         Picker("", selection: $modeSelection) {
-             ForEach(ShuffleMode.allCases, id: \.self) { mode in
-                 Text(mode.rawValue)
-             }
-         }
-     }
-     
-     HStack {
-         Picker("", selection: $insertSelection) {
-             ForEach(InsertOption.allCases, id: \.self) { option in
-                 Text(option.rawValue)
-             }
-         }.pickerStyle(SegmentedPickerStyle())
-             .padding(.horizontal)
-     }
- }
- */

@@ -15,11 +15,12 @@ enum FavOption: String, CaseIterable {
 
 struct FavoritesView: View {
     
-    @Query var people: [Person]
+    @Query(filter: #Predicate<Person> { $0.isSaved == true }) var people: [Person]
     @Query var group: [Group]
     @Environment(\.modelContext) private var modelContext
     
     @State var favSelection: FavOption = .names
+    
     
     var body: some View {
         NavigationStack {
@@ -56,6 +57,7 @@ struct FavoritesView: View {
             .navigationBarItems(leading: Button(action: addPerson) {Image(systemName: "plus")})
             .accentColor(.purple)
         }
+        .accentColor(.purple)
     }
     
     private func addPerson() {
